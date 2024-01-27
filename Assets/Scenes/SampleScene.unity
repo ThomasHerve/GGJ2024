@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,9 +227,10 @@ GameObject:
   m_Component:
   - component: {fileID: 824057665}
   - component: {fileID: 824057666}
+  - component: {fileID: 824057667}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,6 +270,24 @@ MonoBehaviour:
     width: 20
     height: 11
   m_Material: {fileID: 2100000, guid: 132ccc4967000364b886a0c59ea59bc9, type: 2}
+--- !u!114 &824057667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824057664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c299d6562ec55834eaa313694c7d2da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeSprite1: {fileID: 1406144148, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
+  dashSprite1: {fileID: -110167808, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
+  stopSprite1: {fileID: -2044382517, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
+  chargeSprite2: {fileID: 2047944863, guid: e88b9156fe0d43248bf512330763244e, type: 3}
+  dashSprite2: {fileID: -580654504, guid: e88b9156fe0d43248bf512330763244e, type: 3}
+  stopSprite2: {fileID: -1515310387, guid: e88b9156fe0d43248bf512330763244e, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

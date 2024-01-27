@@ -9,6 +9,7 @@ TagManager:
   - PlayerPlaceHolder2
   - PlayerPlaceHolder3
   - EventSystem
+  - GameManager
   layers:
   - Default
   - TransparentFX
