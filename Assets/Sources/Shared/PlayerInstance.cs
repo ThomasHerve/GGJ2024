@@ -27,7 +27,6 @@ namespace Unity.MultiPlayerGame.Shared
         public static int currentPlayerNumber = 0;
         public static bool has2PlayerKeyboard = false;
 
-
         public static int AddPlayer(PlayerInstance player)
         {
             if (currentPlayerNumber == MAX_PLAYER)
@@ -101,10 +100,10 @@ namespace Unity.MultiPlayerGame.Shared
             this.transform.localPosition = new Vector3(0, 0, 0);
             this.transform.localScale = new Vector3(1, 1, 1);
 
-            this.transform.Find("SelectionPanel").GetComponentInChildren<TextMeshProUGUI>().text = inputDevice.name;
-
 
             Debug.Log("Player added at position " + number);
+            this.transform.Find("ImageHolder").GetComponent<Image>().sprite = skinList[number];
+            transform.parent.Find("JoinText").gameObject.SetActive(false);
 
             GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>().actionsAsset.FindAction("Cancel").Disable();
 
@@ -136,6 +135,7 @@ namespace Unity.MultiPlayerGame.Shared
 
         }
 
+        /*
         public void OnPlayerNavigate(InputAction.CallbackContext context)
         {
             if (!context.performed)
@@ -154,7 +154,7 @@ namespace Unity.MultiPlayerGame.Shared
 
 
             this.transform.Find("ImageHolder").GetComponent<Image>().sprite = skinList[skin];
-        }
+        }*/
 
         public void OnPlayerAddOther(InputAction.CallbackContext context)
         {
