@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 using System.Linq;
 using static GGJ2024.GameDirector;
+using UnityEngine.SceneManagement;
 
 namespace GGJ2024
 {
@@ -37,6 +38,11 @@ namespace GGJ2024
         [SerializeField] private RectTransform m_TransitionPanel;
         [SerializeField] private Transform m_TransitionStartAnchor;
         [SerializeField] private Transform m_TransitionEndAnchor;
+
+        [Header("Recap")]
+        [SerializeField] private RectTransform m_RecapPanel;
+        [SerializeField] private RawImage[] m_ScreenshotImages;
+        [SerializeField] private Transform[] m_ScreenshotTargetAnchors;
 
         [Header("Levels")]
         [SerializeField] private LevelDescriptor[] m_Levels;
@@ -83,6 +89,7 @@ namespace GGJ2024
 
             ResetPlayerPositions();
             SetAllInputsEnabled(false);
+            m_RecapPanel.gameObject.SetActive(false);
             InitializeLevel(0);
             yield return LevelCoroutine();
         }
@@ -171,7 +178,11 @@ namespace GGJ2024
                 });
                 yield return LevelCoroutine();
             }
-            yield return RecapCoroutine();
+            else
+            {
+                yield return TransitionCoroutine(() => m_RecapPanel.gameObject.SetActive(true));
+                yield return RecapCoroutine();
+            }
         }
 
         private IEnumerator TransitionCoroutine(TweenCallback callback)
@@ -190,7 +201,18 @@ namespace GGJ2024
         private IEnumerator RecapCoroutine()
         {
             Debug.Log("Finished !");
-            yield return null;
+            yield return new WaitForSeconds(2.0f);
+
+            for (int i  = 0; i < m_Levels.Length; i++)
+            {
+                m_ScreenshotImages[i].texture = ScreenshotTextures[i];
+                m_ScreenshotImages[i].transform.DOMove(m_ScreenshotTargetAnchors[i].position, 1.0f);
+                m_ScreenshotImages[i].transform.DORotateQuaternion(m_ScreenshotTargetAnchors[i].rotation, 1.0f);
+                yield return new WaitForSeconds(3.0f);
+            }
+
+            yield return new WaitForSeconds(5.0f);
+            SceneManager.LoadScene("IntroMenu");
         }
 
         private void SetAllInputsEnabled(bool enabled)
