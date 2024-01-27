@@ -61,6 +61,7 @@ namespace GGJ2024
 
             InkMap.UpdateMap(m_PlayerDatas);
             m_Material.mainTexture = InkMap.Texture;
+            m_Material.SetTexture("_InkMap", InkMap.Texture);
         }
 
         public void RegisterPlayer(PlayerController player)
