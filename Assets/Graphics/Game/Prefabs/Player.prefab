@@ -148,7 +148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   acceleration: 5
-  baseAngle: 90
   dashDuration: 1
   dash:
     serializedVersion: 2
@@ -192,6 +191,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  chargeSprite: {fileID: 1406144148, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
+  dashSprite: {fileID: -110167808, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
+  stopSprite: {fileID: -2044382517, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
+  m_SpriteRenderer: {fileID: 4106123622138050678}
+  startedTime: 0.3
 --- !u!50 &4287209856612441845
 Rigidbody2D:
   serializedVersion: 4
@@ -279,13 +283,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4768841521291333859}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7841524607837153472}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4106123622138050678
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -327,7 +331,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a11cb5454700ddf40b8ea2cbf9ff9286, type: 3}
+  m_Sprite: {fileID: -2044382517, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
