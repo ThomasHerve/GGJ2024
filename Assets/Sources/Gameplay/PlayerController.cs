@@ -32,6 +32,7 @@ namespace GGJ2024
         private Vector2 m_MovementInput;
 
         public bool IsInking { get; private set; }
+        public bool IsErasing { get; private set; }
         public int ID => m_PlayerInput.playerIndex;
 
         private GameManager gameManager;
@@ -65,6 +66,13 @@ namespace GGJ2024
             m_PlayerInput.currentActionMap.FindAction("Move").canceled += OnMove;
             m_PlayerInput.currentActionMap.FindAction("Ink").started += OnInk;
             m_PlayerInput.currentActionMap.FindAction("Ink").canceled += OnInk;
+            m_PlayerInput.currentActionMap.FindAction("Erase").started += OnErase;
+            m_PlayerInput.currentActionMap.FindAction("Erase").canceled += OnErase;
+        }
+
+        private void OnErase(InputAction.CallbackContext context)
+        {
+            IsErasing = !context.canceled;
         }
 
         private void OnInk(InputAction.CallbackContext context)
@@ -74,7 +82,7 @@ namespace GGJ2024
 
         private void OnMove(InputAction.CallbackContext context)
         {
-            m_MovementInput = context.ReadValue<Vector2>();
+            m_MovementInput = context.ReadValue<Vector2>().normalized;
         }
 
         // Update is called once per frame
@@ -87,10 +95,9 @@ namespace GGJ2024
             if (m_MovementInput != Vector2.zero)
             {
                 transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
-            } 
-                
+            }
 
-            currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, Time.deltaTime * acceleration) * dash.Evaluate(dashTime);
+            currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, Time.deltaTime * acceleration);// * dash.Evaluate(dashTime);
             if (m_MovementInput != Vector2.zero && started < startedTime)
             {
                 started += Time.deltaTime;

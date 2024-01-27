@@ -102,8 +102,8 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Player0Color: {r: 0.509434, g: 0.20778388, b: 0.16436455, a: 1}
     - _Player1Color: {r: 0.33746526, g: 0.4188679, b: 0.36459947, a: 1}
-    - _Player2Color: {r: 0, g: 1, b: 0, a: 1}
-    - _Player3Color: {r: 1, g: 1, b: 0, a: 1}
+    - _Player2Color: {r: 0.9843138, g: 0.85098046, b: 0.47058827, a: 1}
+    - _Player3Color: {r: 0.9803922, g: 0.76470596, b: 0.86274517, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &318969677930679565
 MonoBehaviour:

@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Erase",
+                    "type": "Button",
+                    "id": "f75c07dd-6627-4dc4-b37b-35276b6a76c7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -211,7 +220,7 @@
                 {
                     "name": "",
                     "id": "80a4330f-04b1-4698-8c15-c30d128974d8",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -227,6 +236,28 @@
                     "processors": "",
                     "groups": "Keyboard-Mouse",
                     "action": "Ink",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e0bf52c5-e44c-48b5-afc3-854f33e4918d",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Erase",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43239330-ee60-45f2-af1f-4540464396fc",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard-Mouse",
+                    "action": "Erase",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

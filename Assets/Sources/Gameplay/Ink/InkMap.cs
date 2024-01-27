@@ -12,7 +12,7 @@ namespace GGJ2024
         {
             public uint x;
             public uint y;
-            public uint isInking;
+            public uint action;
             public uint unused;
         }
 
@@ -20,6 +20,7 @@ namespace GGJ2024
         {
             public Vector2 normalizedPosition;
             public bool isInking;
+            public bool isErasing;
         }
 
         [SerializeField] private ComputeShader m_UpdateInkMapCompute;
@@ -66,12 +67,13 @@ namespace GGJ2024
             {
                 for (int i = 0; i < kPlayerCount; i++)
                 {
-                    var coords = ToTextureCoords(playerDatas[i].normalizedPosition);
+                    var playerData = playerDatas[i];
+                    var coords = ToTextureCoords(playerData.normalizedPosition);
                     m_PlayerInfos[i] = new PlayerInfo
                     {
                         x = (uint)coords.x,
                         y = (uint)coords.y,
-                        isInking = playerDatas[i].isInking ? 1u : 0u,
+                        action = playerData.isErasing ? 2u : playerData.isInking ? 1u : 0u
                     };
                 }
 

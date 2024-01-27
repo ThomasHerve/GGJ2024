@@ -6,17 +6,13 @@ using UnityEngine.InputSystem;
 
 namespace GGJ2024
 {
-
     public class GameManager : MonoBehaviour
     {
         private PlayerInputManager playerInputManager;
         [Header("Animation")]
-        [SerializeField] private Sprite chargeSprite1;
-        [SerializeField] private Sprite dashSprite1;
-        [SerializeField] private Sprite stopSprite1;
-        [SerializeField] private Sprite chargeSprite2;
-        [SerializeField] private Sprite dashSprite2;
-        [SerializeField] private Sprite stopSprite2;
+        [SerializeField] private Sprite[] chargeSprites;
+        [SerializeField] private Sprite[] dashSprites;
+        [SerializeField] private Sprite[] stopSprites;
 
         [Header("Positions")]
         [SerializeField] private List<Transform> positions;
@@ -38,32 +34,29 @@ namespace GGJ2024
             foreach (PlayerInstance p in PlayerInstance.players)
             {
                 if (p is not null)
+                {
                     if (p.InputDevice is Keyboard && !keyboardTaken)
                     {
                         if (p.InputDevice is Keyboard && !keyboardTaken)
                         {
                             GameObject player = playerInputManager.JoinPlayer(i, -1, "Keyboard-Mouse", p.InputDevice).gameObject;
                             MovePlayer(player.transform, i);
-                            i++;
                             player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
-                            AddPlayer(player.GetComponent<PlayerController>(), i);
+                            AddPlayer(player.GetComponent<PlayerController>());
                             keyboardTaken = true;
+                            i++;
                         }
-                    } else if (p.InputDevice is Gamepad)
+                    }
+                    else if (p.InputDevice is Gamepad)
                     {
                         GameObject player = playerInputManager.JoinPlayer(i, -1, "Gamepad", p.InputDevice).gameObject;
                         MovePlayer(player.transform, i);
-                        i++;
                         player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
-                        AddPlayer(player.GetComponent<PlayerController>(), i);
+                        AddPlayer(player.GetComponent<PlayerController>());
+                        i++;
                     }
+                }
             }
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
         }
 
         private void MovePlayer(Transform player, int pos)
@@ -71,24 +64,10 @@ namespace GGJ2024
             player.position = positions[pos].position;
         }
 
-        public void AddPlayer(PlayerController playerController, int skin)
+        public void AddPlayer(PlayerController playerController)
         {
-            if(skin == 0)
-            {
-                playerController.SetSprites(chargeSprite1, dashSprite1, stopSprite1);
-            }
-            else if (skin == 1)
-            {
-                playerController.SetSprites(chargeSprite2, dashSprite2, stopSprite2);
-            }
-            else if (skin == 2)
-            {
-                playerController.SetSprites(chargeSprite1, dashSprite1, stopSprite1);
-            }
-            else if (skin == 3)
-            {
-                playerController.SetSprites(chargeSprite1, dashSprite1, stopSprite1);
-            }
+            int id = playerController.ID;
+            playerController.SetSprites(chargeSprites[id], dashSprites[id], stopSprites[id]);
         }
 
         public void QuitGame()

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 755530e9ba5cd8a47bf324da11e99596
+guid: 9f74130ce46fedb47bd2b018aa048734
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,37 +106,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: poulpe_orange_sprite_0
+      name: poulpe_jaune_sprite_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cad27e36d3c115d458d9bc4fc7e38000
-      internalID: 1406144148
+      spriteID: 8b678821a93ec7742add5f0301ab3001
+      internalID: 1889322248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: poulpe_orange_sprite_1
+      name: poulpe_jaune_sprite_1
       rect:
         serializedVersion: 2
         x: 432
@@ -171,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b393bdccc78a8c439473d31e4b338d9
-      internalID: -110167808
+      spriteID: 363171b6d73906245a7638b9016e8047
+      internalID: 909175483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: poulpe_orange_sprite_2
+      name: poulpe_jaune_sprite_2
       rect:
         serializedVersion: 2
         x: 864
@@ -192,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39e7d01b5ae74a24d90235a500fc5dd1
-      internalID: -2044382517
+      spriteID: 61e16452a8f7c0f489b95e4fec7aa9f6
+      internalID: -1555866206
       vertices: []
       indices: 
       edges: []
@@ -201,7 +175,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 2c851860d069c234bb42feeda12647c4
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -209,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      poulpe_orange_sprite_0: 1406144148
-      poulpe_orange_sprite_1: -110167808
-      poulpe_orange_sprite_2: -2044382517
+      poulpe_jaune_sprite_0: 1889322248
+      poulpe_jaune_sprite_1: 909175483
+      poulpe_jaune_sprite_2: -1555866206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

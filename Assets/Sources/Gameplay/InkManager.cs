@@ -64,7 +64,8 @@ namespace GGJ2024
                     m_PlayerDatas[player.ID] = new InkMap.PlayerData
                     {
                         normalizedPosition = normalizedPosition,
-                        isInking = player.IsInking
+                        isInking = player.IsInking,
+                        isErasing = player.IsErasing
                     };
                 }
 
@@ -74,9 +75,11 @@ namespace GGJ2024
             for (int i = 0; i < m_PlayerDatas.Length; i++)
             {
                 m_PlayerDatas[i].isInking = false;
+                m_PlayerDatas[i].isErasing = false;
                 m_LastPlayerDatas[i] = m_PlayerDatas[i];
             }
 
+            InkMap.DiffuseMap();
             InkMap.DiffuseMap();
 
             m_Material.mainTexture = InkMap.Texture;
