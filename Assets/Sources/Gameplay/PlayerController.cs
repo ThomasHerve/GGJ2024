@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.MultiPlayerGame.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +27,7 @@ namespace GGJ2024
         public SpriteRenderer m_SpriteRenderer;
         public float startedTime;
         private float started = 0;
+        public int skin = 0;
 
         private Vector2 m_MovementInput;
 
@@ -37,7 +39,6 @@ namespace GGJ2024
         void Start()
         {
             gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-            gameManager.addPlayer(this);
             m_Rigidbody = GetComponent<Rigidbody2D>();
             m_PlayerInput = GetComponent<PlayerInput>();
             SetupInputs();
