@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
@@ -48,6 +49,7 @@ namespace GGJ2024
             {
                 enableRandomWrite = true,
             });
+            Texture.Create();
 
             m_ConstantBuffer = new ComputeBuffer(1, 16 * kPlayerCount);
         }
@@ -102,6 +104,12 @@ namespace GGJ2024
         private static int GroupCount(int size)
         {
             return Mathf.FloorToInt((size - 1) / 8.0f);
+        }
+
+        internal void Clear()
+        {
+            m_UpdateInkMapCompute.SetTexture(2, InkMapNameID, Texture);
+            m_UpdateInkMapCompute.Dispatch(2, GroupCount(Texture.width), GroupCount(Texture.height), 1);
         }
     }
 }

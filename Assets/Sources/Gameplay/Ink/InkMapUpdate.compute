@@ -1,5 +1,6 @@
 #pragma kernel UpdateInkMap
 #pragma kernel DiffuseInkMap
+#pragma kernel Clear
 
 #define PLAYER_COUNT 4
 
@@ -55,6 +56,12 @@ void DiffuseInkMap(uint3 id : SV_DispatchThreadID)
         InkMap[id.xy + int2(0, 1)] * kDiffusionNeighbourWeight;
     
     InkMap[id.xy] = saturate(diffusion);
+}
+
+[numthreads(8, 8, 1)]
+void Clear(uint3 id : SV_DispatchThreadID)
+{
+    InkMap[id.xy] = float4(0, 0, 0, 0);
 }
 
 
