@@ -97,7 +97,7 @@ namespace GGJ2024
                 transform.rotation = Quaternion.Euler(0, 0, angle * Mathf.Rad2Deg);
             }
 
-            currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity, Time.deltaTime * acceleration);// * dash.Evaluate(dashTime);
+            currentVelocity = Vector2.Lerp(currentVelocity, targetVelocity * dash.Evaluate(dashTime), Time.deltaTime * acceleration);
             if (m_MovementInput != Vector2.zero && started < startedTime)
             {
                 started += Time.deltaTime;
