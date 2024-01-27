@@ -7,21 +7,25 @@ cbuffer Players
     uint4 playerInfos[PLAYER_COUNT];
 };
 
-static float kDiffusionCenterWeight = 0.95;
+static float kDiffusionCenterWeight = 0.995;
 static float kDiffusionNeighbourWeight = (1.0 - kDiffusionCenterWeight) / 4;
 
 RWTexture2D<float4> InkMap;
 
-#define PROCESS_INK(index, channel)                             \
-    {                                                           \
-        uint4 playerInfo = playerInfos[index];                  \
-        if (playerInfo.z == 1 &&                                \
-                id.x == playerInfo.x && id.y == playerInfo.y)   \
-        {                                                       \
-            inkValue.channel = 1.0f;                            \
-        }                                                       \
-    }                                                           
-
+#define PROCESS_INK(index, channel)                                         \
+    {                                                                       \
+        uint4 playerInfo = playerInfos[index];                              \
+        if (playerInfo.z == 1)                                              \
+        {                                                                   \
+            if ((id.x == playerInfo.x     && id.y == playerInfo.y) ||       \
+                (id.x == playerInfo.x - 1 && id.y == playerInfo.y) ||       \
+                (id.x == playerInfo.x + 1 && id.y == playerInfo.y - 1) ||   \
+                (id.x == playerInfo.x     && id.y == playerInfo.y + 1))     \
+            {                                                               \
+                inkValue.channel = 1.0f;                                    \
+            }                                                               \
+        }                                                                   \
+    }                                                                       
 
 [numthreads(8,8,1)]
 void UpdateInkMap (uint3 id : SV_DispatchThreadID)
@@ -36,9 +40,7 @@ void UpdateInkMap (uint3 id : SV_DispatchThreadID)
     InkMap[id.xy] = inkValue;
     
     GroupMemoryBarrierWithGroupSync();
-    
-    
-    
+        
     float4 diffusion =
         InkMap[id.xy + int2(-1, 0)] * kDiffusionNeighbourWeight +
         InkMap[id.xy + int2(1, 0)] * kDiffusionNeighbourWeight +
