@@ -14,10 +14,6 @@ namespace GGJ2024
         [SerializeField] private Sprite[] dashSprites;
         [SerializeField] private Sprite[] stopSprites;
 
-        [Header("Positions")]
-        [SerializeField] private List<Transform> positions;
-
-
         // Start is called before the first frame update
         void Start()
         {
@@ -40,7 +36,6 @@ namespace GGJ2024
                         if (p.InputDevice is Keyboard && !keyboardTaken)
                         {
                             GameObject player = playerInputManager.JoinPlayer(i, -1, "Keyboard-Mouse", p.InputDevice).gameObject;
-                            MovePlayer(player.transform, i);
                             player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
                             AddPlayer(player.GetComponent<PlayerController>());
                             keyboardTaken = true;
@@ -50,18 +45,12 @@ namespace GGJ2024
                     else if (p.InputDevice is Gamepad)
                     {
                         GameObject player = playerInputManager.JoinPlayer(i, -1, "Gamepad", p.InputDevice).gameObject;
-                        MovePlayer(player.transform, i);
                         player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
                         AddPlayer(player.GetComponent<PlayerController>());
                         i++;
                     }
                 }
             }
-        }
-
-        private void MovePlayer(Transform player, int pos)
-        {
-            player.position = positions[pos].position;
         }
 
         public void AddPlayer(PlayerController playerController)

@@ -17,7 +17,8 @@ namespace GGJ2024
         public Rect WorldRect { get; private set; }
 
         [SerializeField] private Material m_Material;
-        private List<PlayerController> m_Players = new List<PlayerController>(4);
+
+        public List<PlayerController> Players { get; private set; } = new List<PlayerController>(4);
 
         private InkMap.PlayerData[] m_PlayerDatas = new InkMap.PlayerData[4];
         private InkMap.PlayerData[] m_LastPlayerDatas = new InkMap.PlayerData[4];
@@ -49,7 +50,7 @@ namespace GGJ2024
         {
             for (int i = 1; i <= kSampleCountPerFrame; i++)
             {
-                foreach (var player in m_Players)
+                foreach (var player in Players)
                 {
                     var lastNormalizedPos = m_LastPlayerDatas[player.ID].normalizedPosition;
 
@@ -88,12 +89,12 @@ namespace GGJ2024
 
         public void RegisterPlayer(PlayerController player)
         {
-            m_Players.Add(player);
+            Players.Add(player);
         }
 
         public void UnregisterPlayer(PlayerController player)
         {
-            m_Players.Remove(player);
+            Players.Remove(player);
         }
 
         private void OnDrawGizmos()

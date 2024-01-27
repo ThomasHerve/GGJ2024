@@ -70,6 +70,19 @@ namespace GGJ2024
             m_PlayerInput.currentActionMap.FindAction("Erase").canceled += OnErase;
         }
 
+        public void SetInputEnabled(bool enabled)
+        {
+            if (enabled)
+            {
+                m_PlayerInput.currentActionMap.Enable();
+            }
+            else
+            {
+                m_PlayerInput.currentActionMap.Disable();
+            }
+
+        }
+
         private void OnErase(InputAction.CallbackContext context)
         {
             IsErasing = !context.canceled;
