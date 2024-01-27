@@ -1,16 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using Unity.MultiPlayerGame.Shared;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.LowLevel;
 
-namespace GGJ2024 {
+namespace GGJ2024
+{
 
     public class GameManager : MonoBehaviour
     {
-
         private PlayerInputManager playerInputManager;
         [Header("Animation")]
         [SerializeField] private Sprite chargeSprite1;
@@ -32,9 +30,6 @@ namespace GGJ2024 {
                 PlayerInstance.players[0] = new PlayerInstance();
                 PlayerInstance.players[0].InputDevice = Keyboard.current;
                 PlayerInstance.players[0].skin = 0;
-                PlayerInstance.players[1] = new PlayerInstance();
-                PlayerInstance.players[1].InputDevice = Gamepad.current;
-                PlayerInstance.players[1].skin = 1;
             }
 
             int i = 0;
@@ -51,7 +46,7 @@ namespace GGJ2024 {
                             MovePlayer(player.transform, i);
                             i++;
                             player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
-                            AddPlayer(player.GetComponent<PlayerController>(), p.skin);
+                            AddPlayer(player.GetComponent<PlayerController>(), i);
                             keyboardTaken = true;
                         }
                     } else if (p.InputDevice is Gamepad)
@@ -60,7 +55,7 @@ namespace GGJ2024 {
                         MovePlayer(player.transform, i);
                         i++;
                         player.GetComponent<PlayerInput>().SwitchCurrentActionMap("Player");
-                        AddPlayer(player.GetComponent<PlayerController>(), p.skin);
+                        AddPlayer(player.GetComponent<PlayerController>(), i);
                     }
             }
         }

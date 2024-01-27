@@ -6,6 +6,8 @@ namespace GGJ2024
 {
     public class InkManager : MonoBehaviour
     {
+        public const int kSampleCountPerFrame = 4;
+
         public static InkManager Instance { get; private set; }
 
         [field: SerializeField]
@@ -16,7 +18,9 @@ namespace GGJ2024
 
         [SerializeField] private Material m_Material;
         private List<PlayerController> m_Players = new List<PlayerController>(4);
-        private List<InkMap.PlayerData> m_PlayerDatas = new List<InkMap.PlayerData>(4);
+
+        private InkMap.PlayerData[] m_PlayerDatas = new InkMap.PlayerData[4];
+        private InkMap.PlayerData[] m_LastPlayerDatas = new InkMap.PlayerData[4];
 
         private void Awake()
         {
@@ -43,23 +47,38 @@ namespace GGJ2024
 
         private void Update()
         {
-            m_PlayerDatas.Clear();
-            foreach (var player in m_Players) 
+            for (int i = 1; i <= kSampleCountPerFrame; i++)
             {
-                var playerPos = (Vector2) player.transform.position;
-                var normalizedPosition = new Vector2 (
-                    (playerPos.x - WorldRect.xMin) / WorldRect.width,
-                    (playerPos.y - WorldRect.yMin) / WorldRect.height
-                );
-
-                m_PlayerDatas.Add(new InkMap.PlayerData
+                foreach (var player in m_Players)
                 {
-                    normalizedPosition = normalizedPosition,
-                    isInking = player.IsInking
-                });
+                    var lastNormalizedPos = m_LastPlayerDatas[player.ID].normalizedPosition;
+
+                    var playerPos = (Vector2)player.transform.position;
+                    var normalizedPosition = new Vector2(
+                        (playerPos.x - WorldRect.xMin) / WorldRect.width,
+                        (playerPos.y - WorldRect.yMin) / WorldRect.height
+                    );
+
+                    normalizedPosition = Vector2.Lerp(lastNormalizedPos, normalizedPosition, (float) i / kSampleCountPerFrame);
+
+                    m_PlayerDatas[player.ID] = new InkMap.PlayerData
+                    {
+                        normalizedPosition = normalizedPosition,
+                        isInking = player.IsInking
+                    };
+                }
+
+                InkMap.UpdateMap(m_PlayerDatas);
             }
 
-            InkMap.UpdateMap(m_PlayerDatas);
+            for (int i = 0; i < m_PlayerDatas.Length; i++)
+            {
+                m_PlayerDatas[i].isInking = false;
+                m_LastPlayerDatas[i] = m_PlayerDatas[i];
+            }
+
+            InkMap.DiffuseMap();
+
             m_Material.mainTexture = InkMap.Texture;
             m_Material.SetTexture("_InkMap", InkMap.Texture);
         }

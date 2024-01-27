@@ -25,7 +25,7 @@ namespace GGJ2024.Samples
                 var p0 = new Vector2(0.1f + t0, 0.5f + Mathf.Sin(t * Mathf.PI * 2.478213f) * 0.4f);
                 var p1 = new Vector2(0.1f + t1, 0.5f + Mathf.Sin(t * Mathf.PI * 3.67f) * 0.4f);
 
-                inkMap.UpdateMap(new List<InkMap.PlayerData>()
+                inkMap.UpdateMap(new InkMap.PlayerData[]
                 {
                     new InkMap.PlayerData { normalizedPosition = p0, isInking = true },
                     new InkMap.PlayerData { normalizedPosition = p1, isInking = true },

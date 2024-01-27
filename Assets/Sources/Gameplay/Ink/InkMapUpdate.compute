@@ -1,4 +1,5 @@
 #pragma kernel UpdateInkMap
+#pragma kernel DiffuseInkMap
 
 #define PLAYER_COUNT 4
 
@@ -7,7 +8,7 @@ cbuffer Players
     uint4 playerInfos[PLAYER_COUNT];
 };
 
-static float kDiffusionCenterWeight = 0.995;
+static float kDiffusionCenterWeight = 0.99;
 static float kDiffusionNeighbourWeight = (1.0 - kDiffusionCenterWeight) / 4;
 
 RWTexture2D<float4> InkMap;
@@ -38,9 +39,11 @@ void UpdateInkMap (uint3 id : SV_DispatchThreadID)
     PROCESS_INK(3, a)
     
     InkMap[id.xy] = inkValue;
-    
-    GroupMemoryBarrierWithGroupSync();
-        
+}
+
+[numthreads(8, 8, 1)]
+void DiffuseInkMap(uint3 id : SV_DispatchThreadID)
+{
     float4 diffusion =
         InkMap[id.xy + int2(-1, 0)] * kDiffusionNeighbourWeight +
         InkMap[id.xy + int2(1, 0)] * kDiffusionNeighbourWeight +
@@ -50,3 +53,5 @@ void UpdateInkMap (uint3 id : SV_DispatchThreadID)
     
     InkMap[id.xy] = saturate(diffusion);
 }
+
+

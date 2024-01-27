@@ -60,29 +60,19 @@ namespace GGJ2024
             m_ConstantBuffer = null;
         }
 
-        public void UpdateMap(List<PlayerData> playerData)
+        public void UpdateMap(PlayerData[] playerDatas)
         {
             if (m_UpdateInkMapCompute != null)
             {
                 for (int i = 0; i < kPlayerCount; i++)
                 {
-                    if (i < playerData.Count)
+                    var coords = ToTextureCoords(playerDatas[i].normalizedPosition);
+                    m_PlayerInfos[i] = new PlayerInfo
                     {
-                        var coords = ToTextureCoords(playerData[i].normalizedPosition);
-                        m_PlayerInfos[i] = new PlayerInfo
-                        {
-                            x = (uint)coords.x,
-                            y = (uint)coords.y,
-                            isInking = playerData[i].isInking ? 1u : 0u,
-                        };
-                    }
-                    else
-                    {
-                        m_PlayerInfos[i] = new PlayerInfo
-                        {
-                            isInking = 0
-                        };
-                    }
+                        x = (uint)coords.x,
+                        y = (uint)coords.y,
+                        isInking = playerDatas[i].isInking ? 1u : 0u,
+                    };
                 }
 
                 m_ConstantBuffer.SetData(m_PlayerInfos);
@@ -91,6 +81,12 @@ namespace GGJ2024
                 m_UpdateInkMapCompute.SetTexture(0, InkMapNameID, Texture);
                 m_UpdateInkMapCompute.Dispatch(0, GroupCount(Texture.width), GroupCount(Texture.height), 1);
             }
+        }
+
+        public void DiffuseMap()
+        {
+            m_UpdateInkMapCompute.SetTexture(1, InkMapNameID, Texture);
+            m_UpdateInkMapCompute.Dispatch(1, GroupCount(Texture.width), GroupCount(Texture.height), 1);
         }
 
         private Vector2Int ToTextureCoords(Vector2 position)

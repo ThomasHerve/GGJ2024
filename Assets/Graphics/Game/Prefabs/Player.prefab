@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44c444342cc9fa489ece4f5bb7e9313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 75
   acceleration: 5
   dashDuration: 1
   dash:
@@ -191,11 +191,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  chargeSprite: {fileID: 1406144148, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
-  dashSprite: {fileID: -110167808, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
-  stopSprite: {fileID: -2044382517, guid: 755530e9ba5cd8a47bf324da11e99596, type: 3}
   m_SpriteRenderer: {fileID: 4106123622138050678}
   startedTime: 0.3
+  skin: 0
 --- !u!50 &4287209856612441845
 Rigidbody2D:
   serializedVersion: 4
@@ -257,7 +255,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.52
+  m_Radius: 0.25
 --- !u!1 &4768841521291333859
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +283,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7841524607837153472}

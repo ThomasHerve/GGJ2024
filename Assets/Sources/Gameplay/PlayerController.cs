@@ -32,15 +32,20 @@ namespace GGJ2024
         private Vector2 m_MovementInput;
 
         public bool IsInking { get; private set; }
+        public int ID => m_PlayerInput.playerIndex;
 
         private GameManager gameManager;
+
+        private void Awake()
+        {
+            m_Rigidbody = GetComponent<Rigidbody2D>();
+            m_PlayerInput = GetComponent<PlayerInput>();
+        }
 
         // Start is called before the first frame update
         void Start()
         {
             gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-            m_Rigidbody = GetComponent<Rigidbody2D>();
-            m_PlayerInput = GetComponent<PlayerInput>();
             SetupInputs();
         }
 
