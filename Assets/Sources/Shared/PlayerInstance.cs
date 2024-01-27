@@ -79,7 +79,7 @@ namespace Unity.MultiPlayerGame.Shared
         public InputDevice InputDevice { get => inputDevice; set => inputDevice = value; }
 
         int number = -1;
-        int skin = 0;
+        public int skin = 0;
         bool isReady = false;
 
         public void Start()
