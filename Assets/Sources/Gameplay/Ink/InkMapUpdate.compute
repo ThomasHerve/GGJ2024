@@ -7,6 +7,9 @@ cbuffer Players
     uint4 playerInfos[PLAYER_COUNT];
 };
 
+static float kDiffusionCenterWeight = 0.95;
+static float kDiffusionNeighbourWeight = (1.0 - kDiffusionCenterWeight) / 4;
+
 RWTexture2D<float4> InkMap;
 
 #define PROCESS_INK(index, channel)                             \
@@ -34,12 +37,14 @@ void UpdateInkMap (uint3 id : SV_DispatchThreadID)
     
     GroupMemoryBarrierWithGroupSync();
     
+    
+    
     float4 diffusion =
-        InkMap[id.xy + int2(-1,  0)] * 0.0125 + 
-        InkMap[id.xy + int2( 1,  0)] * 0.0125 + 
-        InkMap[id.xy + int2( 0,  0)] * 0.95  + 
-        InkMap[id.xy + int2( 0, -1)] * 0.0125 + 
-        InkMap[id.xy + int2( 0,  1)] * 0.0125;
+        InkMap[id.xy + int2(-1, 0)] * kDiffusionNeighbourWeight +
+        InkMap[id.xy + int2(1, 0)] * kDiffusionNeighbourWeight +
+        InkMap[id.xy + int2(0, 0)] * kDiffusionCenterWeight +
+        InkMap[id.xy + int2(0, -1)] * kDiffusionNeighbourWeight +
+        InkMap[id.xy + int2(0, 1)] * kDiffusionNeighbourWeight;
     
     InkMap[id.xy] = saturate(diffusion);
 }

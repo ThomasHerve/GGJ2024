@@ -16,11 +16,20 @@ namespace GGJ2024
             public uint unused;
         }
 
+        public struct PlayerData
+        {
+            public Vector2 normalizedPosition;
+            public bool isInking;
+        }
+
         [SerializeField] private ComputeShader m_UpdateInkMapCompute;
 
         public RenderTexture Texture { get; private set; }
         private ComputeBuffer m_ConstantBuffer;
         private PlayerInfo[] m_PlayerInfos = new PlayerInfo[kPlayerCount];
+
+        [SerializeField][Min(1)] private int m_Width = 256;
+        [SerializeField][Min(1)] private int m_Height = 256;
 
         private const int kPlayerCount = 4;
 
@@ -34,7 +43,7 @@ namespace GGJ2024
 
         private void OnEnable()
         {
-            Texture = new RenderTexture(new RenderTextureDescriptor(256, 256, RenderTextureFormat.ARGBFloat)
+            Texture = new RenderTexture(new RenderTextureDescriptor(m_Width, m_Height, RenderTextureFormat.ARGB64)
             {
                 enableRandomWrite = true,
             });
@@ -51,20 +60,20 @@ namespace GGJ2024
             m_ConstantBuffer = null;
         }
 
-        public void UpdateMap(List<Vector2> normalizedPositions)
+        public void UpdateMap(List<PlayerData> playerData)
         {
             if (m_UpdateInkMapCompute != null)
             {
                 for (int i = 0; i < kPlayerCount; i++)
                 {
-                    if (i < normalizedPositions.Count)
+                    if (i < playerData.Count)
                     {
-                        var coords = ToTextureCoords(normalizedPositions[i]);
+                        var coords = ToTextureCoords(playerData[i].normalizedPosition);
                         m_PlayerInfos[i] = new PlayerInfo
                         {
                             x = (uint)coords.x,
                             y = (uint)coords.y,
-                            isInking = 1
+                            isInking = playerData[i].isInking ? 1u : 0u,
                         };
                     }
                     else
