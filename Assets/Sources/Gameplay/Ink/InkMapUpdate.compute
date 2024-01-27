@@ -1,0 +1,45 @@
+#pragma kernel UpdateInkMap
+
+#define PLAYER_COUNT 4
+
+cbuffer Players
+{
+    uint4 playerInfos[PLAYER_COUNT];
+};
+
+RWTexture2D<float4> InkMap;
+
+#define PROCESS_INK(index, channel)                             \
+    {                                                           \
+        uint4 playerInfo = playerInfos[index];                  \
+        if (playerInfo.z == 1 &&                                \
+                id.x == playerInfo.x && id.y == playerInfo.y)   \
+        {                                                       \
+            inkValue.channel = 1.0f;                            \
+        }                                                       \
+    }                                                           
+
+
+[numthreads(8,8,1)]
+void UpdateInkMap (uint3 id : SV_DispatchThreadID)
+{
+    float4 inkValue = InkMap[id.xy];
+   
+    PROCESS_INK(0, r)
+    PROCESS_INK(1, g)
+    PROCESS_INK(2, b)
+    PROCESS_INK(3, a)
+    
+    InkMap[id.xy] = inkValue;
+    
+    GroupMemoryBarrierWithGroupSync();
+    
+    float4 diffusion =
+        InkMap[id.xy + int2(-1,  0)] * 0.0125 + 
+        InkMap[id.xy + int2( 1,  0)] * 0.0125 + 
+        InkMap[id.xy + int2( 0,  0)] * 0.95  + 
+        InkMap[id.xy + int2( 0, -1)] * 0.0125 + 
+        InkMap[id.xy + int2( 0,  1)] * 0.0125;
+    
+    InkMap[id.xy] = saturate(diffusion);
+}

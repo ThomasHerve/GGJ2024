@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 6b4b14a6f735edb45b3619bc385b5560
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_UpdateInkMapCompute: {fileID: 7200000, guid: 3f7f0657dab6898479651252f304ffc7, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
