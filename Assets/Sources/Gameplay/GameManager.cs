@@ -20,6 +20,10 @@ namespace GGJ2024 {
         [SerializeField] private Sprite dashSprite2;
         [SerializeField] private Sprite stopSprite2;
 
+        [Header("Positions")]
+        [SerializeField] private List<Transform> positions;
+
+
         // Start is called before the first frame update
         void Start()
         {
@@ -69,7 +73,7 @@ namespace GGJ2024 {
 
         private void MovePlayer(Transform player, int pos)
         {
-            player.position += Vector3.right * pos; 
+            player.position = positions[pos].position;
         }
 
         public void AddPlayer(PlayerController playerController, int skin)
