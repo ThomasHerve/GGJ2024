@@ -60,6 +60,10 @@ namespace GGJ2024
         private AudioMixer mainMixer;
         [SerializeField]
         public AudioSource siffletSource;
+                [SerializeField]
+        public AudioSource musicSource;
+                [SerializeField]
+        public AudioSource lastMusicSource;
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -123,6 +127,19 @@ namespace GGJ2024
 
         }
 
+public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
+    {
+        float currentTime = 0;
+        float start = audioSource.volume;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
+    }
+    
         private IEnumerator LevelCoroutine()
         {
             var levelDescriptor = m_Levels[Level];
@@ -130,6 +147,12 @@ namespace GGJ2024
             var screenShotTime = UnityEngine.Random.Range(0.0f, 5.0f);
             bool isShaking = false;
             bool isScreenshotRendered = false;
+
+            if(Level ==3){
+                StartCoroutine(StartFade(musicSource, 10f,0));
+                StartCoroutine(StartFade(lastMusicSource, 10f,1));
+
+            }
 
             m_ReadyImage.color = Color.white;
             m_ReadyImage.transform.localScale = Vector2.one * 4;
