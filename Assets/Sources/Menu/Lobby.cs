@@ -21,7 +21,7 @@ namespace Unity.MultiPlayerGame.Menu
         {
             if(!goBtn.interactable && PlayerInstance.AreAllPlayersReady())
             {
-                goBtn.interactable = false;
+                goBtn.interactable = true;
             }
             if(goBtn.interactable && !PlayerInstance.AreAllPlayersReady())
             {

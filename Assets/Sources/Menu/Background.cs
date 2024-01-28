@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.MultiPlayerGame.Shared;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -50,5 +51,12 @@ public class Background : MonoBehaviour
     {
         main = true;
         rawImage.texture = sprites[0].texture;
+        PlayerInstance.ResetPlayers();
+        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerUI");
+        foreach(GameObject p in players)
+        {
+            p.transform.parent.Find("JoinText").gameObject.SetActive(true);
+            Destroy(p);
+        }
     }
 }

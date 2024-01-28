@@ -56,6 +56,13 @@ namespace Unity.MultiPlayerGame.Shared
 
         }
 
+        public static void ResetPlayers()
+        {
+            currentPlayerNumber = 0;
+            players = new List<PlayerInstance>(Enumerable.Repeat<PlayerInstance>(null, MAX_PLAYER));
+            has2PlayerKeyboard = false;
+        }
+
         public static bool AreAllPlayersReady()
         {
             return players.Any(player => player != null) && players.Where(p => p != null).All(p => p.isReady);
