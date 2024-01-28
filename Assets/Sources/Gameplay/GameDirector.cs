@@ -19,7 +19,7 @@ namespace GGJ2024
         {
             public float time;
             public float drawFadeoutTime;
-            public Sprite drawSprite;
+            public Texture drawTexture;
         }
         public static GameDirector Instance { get; private set; }
 
@@ -29,8 +29,8 @@ namespace GGJ2024
         public RenderTexture[] ScreenshotTextures { get; private set; }
 
         [Header("Dependencies")]
-        [SerializeField] private SpriteRenderer m_DrawSpriteRenderer;
-        [SerializeField] private TextMeshProUGUI m_TimerText;
+        [SerializeField] private Material m_DrawPictureMaterial;
+        [SerializeField] private TimerVisual m_Timer;
         [SerializeField] private TextMeshProUGUI m_LevelText;
         [SerializeField] private TextMeshProUGUI m_GoText;
 
@@ -103,18 +103,19 @@ namespace GGJ2024
 
             InkManager.Instance.InkMap.Clear();
             ResetPlayerPositions();
-            m_DrawSpriteRenderer.sprite = levelDescriptor.drawSprite;
-            m_DrawSpriteRenderer.color = new Color(1, 1, 1, 1);
+            m_DrawPictureMaterial.mainTexture = levelDescriptor.drawTexture;
+            m_DrawPictureMaterial.color = new Color(1, 1, 1, 1);
 
-            m_TimerText.text = TimeSpan.FromSeconds(Timer).ToString(@"mm\:ss");
-            m_LevelText.text = $"{level + 1} / {m_Levels.Length}";
+            //m_TimerText.text = TimeSpan.FromSeconds(Timer).ToString(@"mm\:ss");
+            m_Timer.Reset();
+            m_LevelText.text = $"{level + 1}/{m_Levels.Length}";
 
         }
 
         private IEnumerator LevelCoroutine()
         {
             var levelDescriptor = m_Levels[Level];
-            float nextTimerPunch = 10.0f;
+            float nextTimerPunch = Mathf.Min(Timer, 10.0f);
             var screenShotTime = UnityEngine.Random.Range(0.0f, 5.0f);
             bool isShaking = false;
             bool isScreenshotRendered = false;
@@ -139,18 +140,18 @@ namespace GGJ2024
                 var elapsedTime = (levelDescriptor.time - Timer);
                 var fadeout = elapsedTime / levelDescriptor.drawFadeoutTime;
                 var alpha = Mathf.Lerp(1, 0, fadeout);
-                m_DrawSpriteRenderer.color = new Color(1, 1, 1, alpha);
+                m_DrawPictureMaterial.color = new Color(1, 1, 1, alpha);
 
                 if (Timer < nextTimerPunch)
                 {
-                    m_TimerText.transform.DOPunchScale(Vector3.one * 1.05f, 0.25f);
+                    m_Timer.transform.DOPunchScale(Vector3.one * 0.2f, 0.25f);
                     nextTimerPunch -= 1.0f;
                 }
 
                 if (Timer < 3.0f && !isShaking)
                 {
-                    m_TimerText.color = Color.red;
-                    m_TimerText.transform.DOShakePosition(10f, 3f, 50);
+                    //m_TimerText.color = Color.red;
+                    m_Timer.transform.DOShakePosition(10f, 3f, 50);
                     isShaking = true;
                 }
 
@@ -163,7 +164,7 @@ namespace GGJ2024
                 }
 
                 // Update the timer
-                m_TimerText.text = TimeSpan.FromSeconds(Timer).ToString(@"ss\:ff");
+                m_Timer.SetTimer(Timer, levelDescriptor.time);
             }
 
             // Play "sifflet tût tût"
@@ -206,8 +207,8 @@ namespace GGJ2024
             for (int i  = 0; i < m_Levels.Length; i++)
             {
                 m_ScreenshotImages[i].texture = ScreenshotTextures[i];
-                m_ScreenshotImages[i].transform.DOMove(m_ScreenshotTargetAnchors[i].position, 1.0f);
-                m_ScreenshotImages[i].transform.DORotateQuaternion(m_ScreenshotTargetAnchors[i].rotation, 1.0f);
+                m_ScreenshotImages[i].transform.parent.DOMove(m_ScreenshotTargetAnchors[i].position, 1.0f);
+                m_ScreenshotImages[i].transform.parent.DORotateQuaternion(m_ScreenshotTargetAnchors[i].rotation, 1.0f);
                 yield return new WaitForSeconds(3.0f);
             }
 
