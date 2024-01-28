@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -782,6 +782,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1479918726}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1649103306 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 311680312230488941, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+  m_PrefabInstance: {fileID: 5895038672912295194}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1942178163
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +974,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3648189152726680989, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1080
+      objectReference: {fileID: 0}
     - target: {fileID: 4540062928107891683, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
       propertyPath: m_Name
       value: Director
@@ -976,6 +985,14 @@ PrefabInstance:
     - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
       propertyPath: m_Levels.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TransitionForeground
+      value: 
+      objectReference: {fileID: 1649103306}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TsunamiAnimationSpeed
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
       propertyPath: m_Levels.Array.data[0].time
@@ -998,6 +1015,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TsunamiAnimation.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
       propertyPath: m_PlayerPositions.Array.data[0]
       value: 
       objectReference: {fileID: 799388181}
@@ -1018,6 +1039,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967013477}
     - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TsunamiAnimation.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5b833b7513421254889a1112160532e3, type: 3}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TsunamiAnimation.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: b63684a4ce0dcc446a88c743a8ceedf1, type: 3}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TsunamiAnimation.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c32194baab19ed49a961752fc384222, type: 3}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TsunamiAnimation.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: ffb2f3e5f6f80af40b0887c547213918, type: 3}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TsunamiAnimation.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 454371e2fa5470e44bf8533ee94d1d11, type: 3}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TsunamiAnimation.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9db3fa61d144ded4182bf21beca6e477, type: 3}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_TsunamiAnimation.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: f411fc9a464ea6447b0a4cdfd6419998, type: 3}
+    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
       propertyPath: m_Levels.Array.data[0].drawTexture
       value: 
       objectReference: {fileID: 2800000, guid: f9bfea20eadbb0640912ad50ccbfc7fe, type: 3}
@@ -1036,6 +1085,10 @@ PrefabInstance:
     - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
       propertyPath: m_Levels.Array.data[3].drawFadeoutTime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7521193289723372635, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7871251497338875200, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
       propertyPath: m_LocalPosition.x

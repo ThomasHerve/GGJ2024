@@ -35,9 +35,12 @@ namespace GGJ2024
         [SerializeField] private TextMeshProUGUI m_GoText;
 
         [Header("Transition")]
+        [SerializeField] private Sprite[] m_TsunamiAnimation;
+        [SerializeField] private float m_TsunamiAnimationSpeed;
         [SerializeField] private RectTransform m_TransitionPanel;
         [SerializeField] private Transform m_TransitionStartAnchor;
         [SerializeField] private Transform m_TransitionEndAnchor;
+        [SerializeField] private Transform m_TransitionForeground;
 
         [Header("Recap")]
         [SerializeField] private RectTransform m_RecapPanel;
@@ -186,8 +189,9 @@ namespace GGJ2024
             }
         }
 
-        private IEnumerator TransitionCoroutine(TweenCallback callback)
+        private IEnumerator TransitionCoroutine(Action callback)
         {
+            /*
             var rectTransform = m_TransitionPanel.GetComponent<RectTransform>();
 
             var sequence = DOTween.Sequence();
@@ -197,6 +201,23 @@ namespace GGJ2024
             sequence.Append(rectTransform.DOMove(m_TransitionStartAnchor.position, 1.5f).SetEase(Ease.InQuad));
 
             yield return sequence.WaitForCompletion();
+            */
+            m_TransitionForeground.gameObject.SetActive(true);
+            var rawImage = m_TransitionForeground.GetComponent<RawImage>();
+            for (int i = 0; i < m_TsunamiAnimation.Length; i++)
+            {
+                rawImage.texture = m_TsunamiAnimation[i].texture;
+                yield return new WaitForSeconds(m_TsunamiAnimationSpeed);
+            }
+            yield return new WaitForSeconds(0.5f);
+            callback?.Invoke();
+            for (int i = m_TsunamiAnimation.Length-1; i >= 0; i--)
+            {
+                rawImage.texture = m_TsunamiAnimation[i].texture;
+                yield return new WaitForSeconds(m_TsunamiAnimationSpeed);
+            }
+            m_TransitionForeground.gameObject.SetActive(false);
+
         }
 
         private IEnumerator RecapCoroutine()
