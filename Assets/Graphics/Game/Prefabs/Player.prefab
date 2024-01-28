@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7841524607837153472
 Transform:
   m_ObjectHideFlags: 0
@@ -147,17 +147,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b44c444342cc9fa489ece4f5bb7e9313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 50
   acceleration: 5
   dashDuration: 2
   dash:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.0051727295
-      value: 0.38780975
-      inSlope: 2.0477931
-      outSlope: 2.0477931
+      time: 0.0032613277
+      value: 0.42965764
+      inSlope: 1.1521319
+      outSlope: 1.1521319
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
@@ -165,8 +165,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.28858864
       value: 0.98937225
-      inSlope: 0.47157568
-      outSlope: 0.47157568
+      inSlope: 0.53180784
+      outSlope: 0.53180784
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -174,17 +174,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.804534
       value: 0.4194374
-      inSlope: -0.67952603
-      outSlope: -0.67952603
+      inSlope: -0.84878665
+      outSlope: -0.84878665
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.9792175
-      value: 0.37499613
-      inSlope: -0.2544103
-      outSlope: -0.2544103
+      time: 0.8748245
+      value: 0.4280632
+      inSlope: -1.6090571
+      outSlope: -1.6090571
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -304,9 +304,9 @@ AudioSource:
   m_GameObject: {fileID: 1301922807682998883}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2133511347233912015, guid: 117fe0794e8d0094f94cc71b6b27fb11, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

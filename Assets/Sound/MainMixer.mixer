@@ -131,13 +131,13 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: 6e6d3fb65655c42edb0e6440e2902f75
-    name: MyExposedParam
+    name: CutLowFreqMusic
   - guid: 7f3219431355ebb428b0ecf0780d9001
     name: MasterVolume
   - guid: fddd3471ddb732a42bf5557f8978e6ee
     name: MusicVolume
   - guid: 234b9341d7490673baf00aa14727d285
-    name: MyExposedParam 1
+    name: VoicesVolume
   m_AudioMixerGroupViews:
   - guids:
     - 052e9b5b74578924c8a4e87227b39360

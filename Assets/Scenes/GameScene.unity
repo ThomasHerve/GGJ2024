@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -382,62 +382,6 @@ PrefabInstance:
     - target: {fileID: 1301922807682998883, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1301922807682998883, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: speed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[0].time
-      value: 0.0032613277
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[3].time
-      value: 0.8748245
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[0].value
-      value: 0.42965764
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[3].value
-      value: 0.4280632
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[0].inSlope
-      value: 1.1521319
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[1].inSlope
-      value: 0.53180784
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[2].inSlope
-      value: -0.84878665
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[3].inSlope
-      value: -1.6090571
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[0].outSlope
-      value: 1.1521319
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[1].outSlope
-      value: 0.53180784
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[2].outSlope
-      value: -0.84878665
-      objectReference: {fileID: 0}
-    - target: {fileID: 5620943133156047313, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
-      propertyPath: dash.m_Curve.Array.data[3].outSlope
-      value: -1.6090571
       objectReference: {fileID: 0}
     - target: {fileID: 7841524607837153472, guid: 2f4d4c4217f5dde4690f6688e447edc7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -974,30 +918,6 @@ PrefabInstance:
       value: Director
       objectReference: {fileID: 0}
     - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.data[0].time
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.data[1].time
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.data[2].time
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.data[3].time
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_PlayerPositions.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
       propertyPath: m_PlayerPositions.Array.data[0]
       value: 
       objectReference: {fileID: 799388181}
@@ -1013,30 +933,6 @@ PrefabInstance:
       propertyPath: m_PlayerPositions.Array.data[3]
       value: 
       objectReference: {fileID: 1967013477}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_PlayerPositions.Array.data[4]
-      value: 
-      objectReference: {fileID: 1967013477}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.data[0].drawTexture
-      value: 
-      objectReference: {fileID: 2800000, guid: f9bfea20eadbb0640912ad50ccbfc7fe, type: 3}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.data[1].drawTexture
-      value: 
-      objectReference: {fileID: 2800000, guid: 8dae6706f78aec74b8c07cc2bf5701fb, type: 3}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.data[2].drawTexture
-      value: 
-      objectReference: {fileID: 2800000, guid: 2c81c6895ba8c48458bd9b30c7f60d0d, type: 3}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.data[3].drawTexture
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5750702114834708083, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
-      propertyPath: m_Levels.Array.data[3].drawFadeoutTime
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7871251497338875200, guid: f1d0142cd16d7a942baf6da8359e5cd4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

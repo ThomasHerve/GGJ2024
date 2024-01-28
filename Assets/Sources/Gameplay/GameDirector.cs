@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using System.Linq;
 using static GGJ2024.GameDirector;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 namespace GGJ2024
 {
@@ -50,6 +51,11 @@ namespace GGJ2024
         [Header("Positions")]
         [SerializeField] private Transform[] m_PlayerPositions;
 
+
+        [SerializeField]
+        private AudioMixer mainMixer;
+        [SerializeField]
+        public AudioSource siffletSource;
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -120,6 +126,7 @@ namespace GGJ2024
             bool isShaking = false;
             bool isScreenshotRendered = false;
 
+            mainMixer.SetFloat("CutLowFreqMusic", 5000);
             yield return new WaitForSeconds(3.0f);
 
             m_GoText.alpha = 1.0f;
@@ -167,8 +174,11 @@ namespace GGJ2024
                 m_Timer.SetTimer(Timer, levelDescriptor.time);
             }
 
-            // Play "sifflet tût tût"
+            // Play "sifflet tï¿½t tï¿½t"
+            siffletSource.Play();
             SetAllInputsEnabled(false);
+            mainMixer.SetFloat("CutLowFreqMusic", 500);
+
             yield return new WaitForSeconds(2.0f);
 
             Level++;
