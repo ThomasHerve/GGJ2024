@@ -19,7 +19,7 @@ namespace GGJ2024
         {
             public float time;
             public float drawFadeoutTime;
-            public Texture drawTexture;
+            public Texture[] drawTexture;
         }
         public static GameDirector Instance { get; private set; }
 
@@ -106,7 +106,7 @@ namespace GGJ2024
 
             InkManager.Instance.InkMap.Clear();
             ResetPlayerPositions();
-            m_DrawPictureMaterial.mainTexture = levelDescriptor.drawTexture;
+            m_DrawPictureMaterial.mainTexture = levelDescriptor.drawTexture[UnityEngine.Random.Range(0, levelDescriptor.drawTexture.Length - 1)];
             m_DrawPictureMaterial.color = new Color(1, 1, 1, 1);
 
             //m_TimerText.text = TimeSpan.FromSeconds(Timer).ToString(@"mm\:ss");
