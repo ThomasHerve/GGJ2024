@@ -33,7 +33,8 @@ namespace GGJ2024
         [SerializeField] private Material m_DrawPictureMaterial;
         [SerializeField] private TimerVisual m_Timer;
         [SerializeField] private TextMeshProUGUI m_LevelText;
-        [SerializeField] private TextMeshProUGUI m_GoText;
+        [SerializeField] private Image m_GoImage;
+        [SerializeField] private Image m_ReadyImage;
 
         [Header("Transition")]
         [SerializeField] private Sprite[] m_TsunamiAnimation;
@@ -129,13 +130,19 @@ namespace GGJ2024
             bool isShaking = false;
             bool isScreenshotRendered = false;
 
-            mainMixer.SetFloat("CutLowFreqMusic", 5000);
-            yield return new WaitForSeconds(3.0f);
+            m_ReadyImage.color = Color.white;
+            m_ReadyImage.transform.localScale = Vector2.one * 4;
+            m_ReadyImage.transform.DOScale(1, 0.25f);
+            m_ReadyImage.DOFade(0, 1.0f);
 
-            m_GoText.alpha = 1.0f;
-            m_GoText.transform.localScale = Vector2.one * 4;
-            m_GoText.transform.DOScale(1, 0.25f);
-            m_GoText.DOFade(0, 1.0f);
+            mainMixer.SetFloat("CutLowFreqMusic", 5000);
+            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2.0f);
+
+            m_GoImage.color = Color.white;
+            m_GoImage.transform.localScale = Vector2.one * 4;
+            m_GoImage.transform.DOScale(1, 0.25f);
+            m_GoImage.DOFade(0, 1.0f);
 
             SetAllInputsEnabled(true);
 
@@ -177,7 +184,6 @@ namespace GGJ2024
                 m_Timer.SetTimer(Timer, levelDescriptor.time);
             }
 
-            // Play "sifflet t�t t�t"
             siffletSource.Play();
             SetAllInputsEnabled(false);
             mainMixer.SetFloat("CutLowFreqMusic", 500);
@@ -201,17 +207,6 @@ namespace GGJ2024
 
         private IEnumerator TransitionCoroutine(Action callback)
         {
-            /*
-            var rectTransform = m_TransitionPanel.GetComponent<RectTransform>();
-
-            var sequence = DOTween.Sequence();
-            sequence.Append(rectTransform.DOMove(m_TransitionEndAnchor.position, 1.5f).SetEase(Ease.OutBounce));
-            sequence.AppendInterval(1.0f);
-            sequence.AppendCallback(callback);
-            sequence.Append(rectTransform.DOMove(m_TransitionStartAnchor.position, 1.5f).SetEase(Ease.InQuad));
-
-            yield return sequence.WaitForCompletion();
-            */
             m_TransitionForeground.gameObject.SetActive(true);
             var rawImage = m_TransitionForeground.GetComponent<RawImage>();
             for (int i = 0; i < m_TsunamiAnimation.Length; i++)
@@ -227,7 +222,6 @@ namespace GGJ2024
                 yield return new WaitForSeconds(m_TsunamiAnimationSpeed);
             }
             m_TransitionForeground.gameObject.SetActive(false);
-
         }
 
         private IEnumerator RecapCoroutine()
