@@ -51,7 +51,6 @@ public class Background : MonoBehaviour
     {
         main = true;
         rawImage.texture = sprites[0].texture;
-        PlayerInstance.ResetPlayers();
         GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerUI");
         foreach(GameObject p in players)
         {

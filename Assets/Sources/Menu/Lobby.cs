@@ -29,6 +29,9 @@ namespace Unity.MultiPlayerGame.Menu
             }
         }
 
-
+        public void ResetPlayers()
+        {
+            PlayerInstance.ResetPlayers();
+        }
     }
 }
