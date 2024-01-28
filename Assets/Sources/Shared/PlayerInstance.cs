@@ -56,6 +56,13 @@ namespace Unity.MultiPlayerGame.Shared
 
         }
 
+        public static void ResetPlayers()
+        {
+            currentPlayerNumber = 0;
+            players = new List<PlayerInstance>(Enumerable.Repeat<PlayerInstance>(null, MAX_PLAYER));
+            has2PlayerKeyboard = false;
+        }
+
         public static bool AreAllPlayersReady()
         {
             return players.Any(player => player != null) && players.Where(p => p != null).All(p => p.isReady);
@@ -73,6 +80,8 @@ namespace Unity.MultiPlayerGame.Shared
          */
         [SerializeField]
         Sprite[] skinList;
+        [SerializeField]
+        Sprite[] skinValidateList;
 
         InputDevice inputDevice;
         public InputDevice InputDevice { get => inputDevice; set => inputDevice = value; }
@@ -85,6 +94,7 @@ namespace Unity.MultiPlayerGame.Shared
         {
             inputDevice = GetComponent<PlayerInput>().GetDevice<InputDevice>();
 
+            int pos = FindNewPlayerID();
             number = AddPlayer(this);
 
             if (number == -1)
@@ -95,14 +105,15 @@ namespace Unity.MultiPlayerGame.Shared
 
             }
 
-            GameObject placeholder = GameObject.FindGameObjectWithTag("PlayerPlaceHolder" + number);
+            
+            GameObject placeholder = GameObject.FindGameObjectWithTag("PlayerPlaceHolder" + pos);
             this.transform.SetParent(placeholder.transform);
             this.transform.localPosition = new Vector3(0, 0, 0);
             this.transform.localScale = new Vector3(1, 1, 1);
 
 
-            Debug.Log("Player added at position " + number);
-            this.transform.Find("ImageHolder").GetComponent<Image>().sprite = skinList[number];
+            Debug.Log("Player added at position " + pos);
+            this.transform.Find("ImageHolder").GetComponent<Image>().sprite = skinList[pos];
             transform.parent.Find("JoinText").gameObject.SetActive(false);
 
             GameObject.FindGameObjectWithTag("EventSystem").GetComponent<InputSystemUIInputModule>().actionsAsset.FindAction("Cancel").Disable();
@@ -116,9 +127,11 @@ namespace Unity.MultiPlayerGame.Shared
 
             if (isReady)
             {
+                this.transform.Find("ImageHolder").GetComponent<Image>().sprite = skinList[number];
                 isReady = false;
                 return;
             }
+            transform.parent.Find("JoinText").gameObject.SetActive(true);
 
             RemovePlayer(this);
 
@@ -132,6 +145,7 @@ namespace Unity.MultiPlayerGame.Shared
             if (!context.performed)
                 return;
             isReady = true;
+            this.transform.Find("ImageHolder").GetComponent<Image>().sprite = skinValidateList[number];
 
         }
 
@@ -163,9 +177,21 @@ namespace Unity.MultiPlayerGame.Shared
 
             has2PlayerKeyboard = true;
             PlayerInputManager playerInputManager = FindObjectOfType<PlayerInputManager>();
-            GameObject newPlayer =  playerInputManager.JoinPlayer(currentPlayerNumber, -1, "*", new InputDevice[] { Keyboard.current, Mouse.current }).gameObject;
+            GameObject newPlayer =  playerInputManager.JoinPlayer(FindNewPlayerID(), -1, "*", new InputDevice[] { Keyboard.current, Mouse.current }).gameObject;
 
             newPlayer.GetComponent<PlayerInput>().SwitchCurrentActionMap("PlayerUI2");
+        }
+
+        private int FindNewPlayerID()
+        {
+            for(int i = 0; i < 4; i++)
+            {
+                if(players[i] == null)
+                {
+                    return i;
+                }
+            }
+            return 0;
         }
 
         public void OnDestroy()

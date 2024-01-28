@@ -37,10 +37,25 @@ namespace GGJ2024
 
         private GameManager gameManager;
 
+        [Header("Sons")]
+        public float minRandom;
+        public float maxRandom;
+        public float collisionTimout = 2;
+        private float collisionTimoutTime = 0;
+        private float currentRandom = 0;
+        private float currentRandomTime = 0;
+
+        public AudioClip[] biblical;
+        public AudioClip[] collision;
+        public AudioClip[] random;
+        public AudioClip[] start;
+        private AudioSource m_AudioSource;
+
         private void Awake()
         {
             m_Rigidbody = GetComponent<Rigidbody2D>();
             m_PlayerInput = GetComponent<PlayerInput>();
+            m_AudioSource = GetComponent<AudioSource>();
         }
 
         // Start is called before the first frame update
@@ -48,6 +63,14 @@ namespace GGJ2024
         {
             gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             SetupInputs();
+            ResetRandomSound();
+            PlaySound(start);
+        }
+
+        private void ResetRandomSound()
+        {
+            currentRandom = Random.Range(minRandom, maxRandom);
+            currentRandomTime = 0;
         }
 
         private void OnEnable()
@@ -134,6 +157,19 @@ namespace GGJ2024
             //if (buffspeed) currentVelocity = Vector3.Lerp(currentVelocity, targetVelocity * buffspeedmultiplier, Time.deltaTime * acceleration);
             m_Rigidbody.velocity = currentVelocity;
 
+            // Sound
+            currentRandomTime += Time.deltaTime;
+            if(currentRandomTime > currentRandom)
+            {
+                PlaySound(random);
+                ResetRandomSound();
+            }
+            if(collisionTimoutTime < collisionTimout) collisionTimoutTime += Time.deltaTime;
+            if(collisionTimoutTime > collisionTimout)
+            {
+                collisionTimoutTime = collisionTimout;
+            }
+
         }
 
         public void SetSprites(Sprite chargeSprite, Sprite dashSprite, Sprite stopSprite)
@@ -141,6 +177,23 @@ namespace GGJ2024
             this.chargeSprite = chargeSprite;
             this.dashSprite = dashSprite;
             this.stopSprite = stopSprite;
+        }
+
+        private void PlaySound(AudioClip[] audioClips)
+        {
+            m_AudioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length - 1)]);
+        }
+
+        public void PlayBiblical()
+        {
+            PlaySound(biblical);
+        }
+
+        private void OnCollisionEnter2D()
+        {
+            if (collisionTimoutTime < collisionTimout) return;
+            collisionTimoutTime = 0;
+            PlaySound(collision);
         }
     }
 
