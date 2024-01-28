@@ -113,7 +113,8 @@ namespace GGJ2024
 
             InkManager.Instance.InkMap.Clear();
             ResetPlayerPositions();
-            m_DrawPictureMaterial.mainTexture = levelDescriptor.drawTexture[UnityEngine.Random.Range(0, levelDescriptor.drawTexture.Length - 1)];
+            int randomTexture = UnityEngine.Random.Range(0, levelDescriptor.drawTexture.Length);
+            m_DrawPictureMaterial.mainTexture = levelDescriptor.drawTexture[randomTexture];
             m_DrawPictureMaterial.color = new Color(1, 1, 1, 1);
 
             //m_TimerText.text = TimeSpan.FromSeconds(Timer).ToString(@"mm\:ss");

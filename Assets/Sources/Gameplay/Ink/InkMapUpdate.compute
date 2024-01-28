@@ -27,7 +27,7 @@ RWTexture2D<float4> InkMap;
         {                                                                   \
             if (distance(float2(playerInfo.xy), float2(id.xy)) < 15.0f)     \
             {                                                               \
-                inkValue.channel = 0.0f;                                    \
+                inkValue.rgba = float4(0, 0, 0, 0);                         \
             }                                                               \
         }                                                                   \
     }                                                                       
